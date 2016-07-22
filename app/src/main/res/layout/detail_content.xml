@@ -311,7 +311,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:padding="10dp"
-                android:id="@+id/segmenCahaya"
+                android:id="@+id/segmenIntensitasCahaya"
                 android:layout_below="@+id/segmenKelembaban"
                 android:layout_marginTop="16dp"
                 android:background="@color/lightYellow">
