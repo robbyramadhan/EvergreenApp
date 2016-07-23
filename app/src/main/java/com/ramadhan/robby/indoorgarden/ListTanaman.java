@@ -33,7 +33,7 @@ public class ListTanaman extends AppCompatActivity implements NavigationView.OnN
         setContentView(R.layout.activity_list_tanaman);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.listToolbar);
-        toolbar.setTitle("Add Your Plant's Profile");
+        toolbar.setTitle("Add Your Plants");
         setSupportActionBar(toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerList);
