@@ -33,6 +33,7 @@ public class DetailTanaman extends AppCompatActivity implements NavigationView.O
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_detail_tanaman);
         Toolbar toolbar = (Toolbar) findViewById(R.id.detailToolbar);
         toolbar.setTitle("My Plant");
