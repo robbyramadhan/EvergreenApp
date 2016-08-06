@@ -22,9 +22,6 @@
             android:name="com.ramadhan.robby.indoorgarden.DetailTanaman"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity
-            android:name="com.ramadhan.robby.indoorgarden.VerificationLogin"
-            android:theme="@style/AppTheme.NoActionBar" />
-        <activity
             android:name="com.ramadhan.robby.indoorgarden.InstructionList"
             android:label="@string/title_activity_instruction_list"
             android:theme="@style/AppTheme.NoActionBar" />

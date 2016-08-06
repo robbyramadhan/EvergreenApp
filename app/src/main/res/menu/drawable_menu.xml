@@ -17,5 +17,9 @@
             android:id="@+id/nav_settings"
             android:icon="@android:drawable/ic_menu_edit"
             android:title="Configuration" />
+        <item
+            android:id="@+id/log_out"
+            android:icon="@android:drawable/ic_menu_close_clear_cancel"
+            android:title="Log out" />
     </group>
 </menu>

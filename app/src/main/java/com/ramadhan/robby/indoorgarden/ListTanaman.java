@@ -21,7 +21,7 @@ import android.widget.TextView;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ListTanaman extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
+public class ListTanaman extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     public static List<Tanaman> arrayTanaman = new ArrayList<Tanaman>();
 
@@ -30,6 +30,7 @@ public class ListTanaman extends AppCompatActivity implements NavigationView.OnN
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         setContentView(R.layout.activity_list_tanaman);
 
         Toolbar toolbar = (Toolbar) findViewById(R.id.listToolbar);
@@ -55,7 +56,7 @@ public class ListTanaman extends AppCompatActivity implements NavigationView.OnN
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
                         DatabaseHandler dbH = new DatabaseHandler(ListTanaman.this);
-                        dbH.addTanaman(new Tanaman(which+1));
+                        dbH.addTanaman(new Tanaman(which + 1));
                         ListTanaman.this.updateData();
                         dialog.dismiss();
                     }
@@ -72,20 +73,20 @@ public class ListTanaman extends AppCompatActivity implements NavigationView.OnN
 
         DatabaseHandler dbH = new DatabaseHandler(this);
         Tanaman[] tanamans = dbH.readAllTanaman();
-        if(tanamans.length == 0){
+        if (tanamans.length == 0) {
             TextView noPlant = (TextView) findViewById(R.id.noPlantText);
             noPlant.setVisibility(View.VISIBLE);
         }
 
         ListView listTanaman = (ListView) findViewById(R.id.listTanaman);
-        adapterTanaman = new AdapterTanaman(this,R.layout.nama_tanaman, tanamans);
+        adapterTanaman = new AdapterTanaman(this, R.layout.nama_tanaman, tanamans);
         listTanaman.setAdapter(adapterTanaman);
 
         listTanaman.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(ListTanaman.this, DetailTanaman.class);
-                intent.putExtra("indeksTanaman",position);
+                intent.putExtra("indeksTanaman", position);
                 startActivity(intent);
             }
         });
@@ -99,14 +100,15 @@ public class ListTanaman extends AppCompatActivity implements NavigationView.OnN
                 builder.setItems(R.array.contextMenu, new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
-                        switch (which){
+                        switch (which) {
                             case 0: {
                                 Intent intent = new Intent(ListTanaman.this, DetailTanaman.class);
-                                intent.putExtra("indeksTanaman",pos);
+                                intent.putExtra("indeksTanaman", pos);
                                 startActivity(intent);
                             }
                             break;
-                            case 1: break;
+                            case 1:
+                                break;
                             case 2: {
                                 AlertDialog.Builder builder2 = new AlertDialog.Builder(ListTanaman.this);
                                 builder2.setTitle("Remove plant?");
@@ -120,7 +122,7 @@ public class ListTanaman extends AppCompatActivity implements NavigationView.OnN
                                         updateData();
                                     }
                                 });
-                                builder2.setNegativeButton("Cancel",null);
+                                builder2.setNegativeButton("Cancel", null);
                                 builder2.create().show();
                             }
                             break;
@@ -162,55 +164,56 @@ public class ListTanaman extends AppCompatActivity implements NavigationView.OnN
         return super.onOptionsItemSelected(item);
     }
 
-    public void updateData(){
+    public void updateData() {
         ListView listTanaman = (ListView) findViewById(R.id.listTanaman);
         listTanaman.invalidateViews();
 
         DatabaseHandler dbH = new DatabaseHandler(this);
 
         Tanaman[] tanamans = dbH.readAllTanaman();
-        if(tanamans.length == 0){
+        if (tanamans.length == 0) {
             TextView noPlant = (TextView) findViewById(R.id.noPlantText);
             noPlant.setVisibility(View.VISIBLE);
         } else {
             TextView noPlant = (TextView) findViewById(R.id.noPlantText);
             noPlant.setVisibility(View.INVISIBLE);
         }
-        adapterTanaman = new AdapterTanaman(this,R.layout.nama_tanaman, tanamans);
+        adapterTanaman = new AdapterTanaman(this, R.layout.nama_tanaman, tanamans);
         listTanaman.setAdapter(adapterTanaman);
     }
 
     @Override
     public boolean onNavigationItemSelected(MenuItem menuItem) {
         int position = menuItem.getItemId();
-        switch (position){
-            case R.id.nav_latestPlan : {
+        switch (position) {
+            case R.id.nav_latestPlan: {
                 Intent intent = new Intent(this, DetailTanaman.class);
-                intent.putExtra("indeksTanaman", ListTanaman.arrayTanaman.size()-1);
+                intent.putExtra("indeksTanaman", ListTanaman.arrayTanaman.size() - 1);
                 startActivity(intent);
             }
             break;
-            case R.id.nav_list : {
+            case R.id.nav_list: {
                 DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawerList);
                 drawer.closeDrawer(GravityCompat.START);
             }
             break;
-            case R.id.nav_instruction : {
+            case R.id.nav_instruction: {
                 Intent intent = new Intent(this, InstructionList.class);
                 startActivity(intent);
             }
             break;
-            case R.id.nav_settings : break;
+            case R.id.nav_settings:
+                break;
         }
         return true;
     }
 
-     @Override
-     public void onStart(){
-         super.onStart();
-         NavigationView navigationView = (NavigationView) findViewById(R.id.list_nav_view);
-         navigationView.getMenu().getItem(1).setChecked(true);
-     }
+    @Override
+    public void onStart() {
+        super.onStart();
+        NavigationView navigationView = (NavigationView) findViewById(R.id.list_nav_view);
+        navigationView.getMenu().getItem(1).setChecked(true);
+    }
 
     @Override
     public void onBackPressed() {
